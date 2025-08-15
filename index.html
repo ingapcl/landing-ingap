@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="INGAP Soluciones — Mantenimiento Industrial y Obras Civiles">
-  <meta property="og:description" content="Servicio integral: mantenimiento, piping, HVAC, obra civil ligera y pesada.">
+  <meta property="og:description" content="Servicio integral: mantenimiento, piping, HVAC, obra civil.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tudominio.cl/">
   <meta property="og:image" content="https://tudominio.cl/og-image.jpg">
@@ -19,67 +19,146 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- CSS -->
-  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============ RESET & TOKENS ============ */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0}
+    :root{
+      /* Color tokens: dark */
+      --bg:#0b0d12;          /* fondo */
+      --surface:#10141d;     /* tarjetas */
+      --line:#1f2430;        /* bordes */
+      --text:#e6e8ec;        /* texto principal */
+      --muted:#a6adbb;       /* texto secundario */
+      --brand:#2dd4bf;       /* acento */
+      --brand-ink:#001016;   /* texto sobre brand */
+      --max:1100px;
+      --radius:14px;
+      /* Tipografía fluida */
+      --fs-hero:clamp(1.8rem, 1.1rem + 2.5vw, 3rem);
+      --fs-h2:clamp(1.3rem, 1rem + 1vw, 2rem);
+      --fs-body:clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    }
+    [data-theme="light"]{
+      --bg:#f8fafc; --surface:#ffffff; --line:#e2e8f0; --text:#0f172a; --muted:#475569; --brand:#0ea5e9; --brand-ink:#00131e;
+    }
+    @media (prefers-color-scheme: light){
+      html[data-theme="system"]{--bg:#f8fafc; --surface:#ffffff; --line:#e2e8f0; --text:#0f172a; --muted:#475569; --brand:#0ea5e9; --brand-ink:#00131e}
+    }
 
-  <!-- Schema.org (Organization + FAQPage) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"INGAP Soluciones",
-    "url":"https://tudominio.cl/",
-    "logo":"https://tudominio.cl/logo.png",
-    "sameAs":["https://www.linkedin.com/company/ingap-soluciones"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry":"CL",
-      "addressRegion":"Valparaíso",
-      "addressLocality":"Viña del Mar"
-    },
-    "contactPoint":[{
-      "@type":"ContactPoint",
-      "telephone":"+56 9 1234 5678",
-      "contactType":"Customer Service",
-      "areaServed":"CL",
-      "availableLanguage":["es"]
-    }]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"¿Trabajan emergencias 24/7?","acceptedAnswer":{"@type":"Answer","text":"Sí, contamos con cuadrillas disponibles para atención prioritaria según disponibilidad y contrato."}},
-      {"@type":"Question","name":"¿Cobertura?","acceptedAnswer":{"@type":"Answer","text":"Atendemos en toda la zona central y coordinamos proyectos en regiones."}},
-      {"@type":"Question","name":"¿Documentación y seguridad?","acceptedAnswer":{"@type":"Answer","text":"Protocolos SST, RIOHS, charlas de inducción, y procedimientos de trabajo seguro."}}
-    ]
-  }
-  </script>
+    body{background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    img{max-width:100%;display:block;height:auto}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
+    p{margin:.5rem 0 0}
+    .container{max-width:var(--max);margin-inline:auto;padding:0 18px}
 
-  <!-- Analytics (ej. Plausible o GA) -->
-  <!-- <script defer data-domain="tudominio.cl" src="https://plausible.io/js/script.js"></script> -->
+    /* ============ NAV ============ */
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(10px);background:color-mix(in oklab, var(--bg) 80%, transparent);border-bottom:1px solid var(--line)}
+    .nav__row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text)}
+    .logo img{width:132px;height:auto}
+    .nav__links{display:flex;gap:10px;align-items:center}
+    .nav__links a{padding:8px 10px;border-radius:10px}
+    .nav__toggle{display:none}
+
+    /* Mobile menu */
+    @media (max-width: 860px){
+      .nav__toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 12px;border-radius:10px}
+      .nav__links{position:fixed;inset:56px 12px auto 12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);padding:10px;display:none;flex-direction:column}
+      .nav__links.is-open{display:flex}
+    }
+
+    /* ============ HERO ============ */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:64px 0}
+    .hero h1{font-size:var(--fs-hero)}
+    .hero p{color:var(--muted);max-width:60ch}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .badges{display:flex;gap:12px;list-style:none;padding:0;margin:18px 0 0;flex-wrap:wrap}
+    .badges li{background:var(--surface);border:1px solid var(--line);padding:10px 14px;border-radius:999px}
+    .hero__media{align-self:center;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+
+    /* ============ SECTIONS ============ */
+    section{padding:56px 0}
+    .section--alt{background:linear-gradient(180deg, color-mix(in oklab, var(--surface) 25%, transparent), transparent);border-block:1px solid var(--line)}
+    .grid{display:grid;gap:16px}
+
+    /* Cards */
+    .cards{grid-template-columns:repeat(4,1fr)}
+    .card{background:var(--surface);border:1px solid var(--line);padding:18px;border-radius:var(--radius)}
+    .card h3{margin-bottom:.25rem}
+
+    /* Features / steps / testimonials */
+    .features{display:grid;gap:10px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:step}
+    .steps li{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:var(--radius);list-style:none;position:relative}
+    .steps li::before{counter-increment:step;content:counter(step);position:absolute;top:10px;right:10px;color:var(--muted);font-weight:700}
+    .testimonials{grid-template-columns:repeat(2,1fr)}
+    .testimonial{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:var(--radius)}
+
+    /* Contact */
+    .contact__grid{grid-template-columns:1.1fr .9fr;gap:20px}
+    .form{display:grid;gap:12px}
+    .form label{display:grid;gap:6px;font-weight:600}
+    input,textarea,select{border-radius:12px;border:1px solid var(--line);background:color-mix(in oklab, var(--surface) 85%, var(--bg));color:var(--text);padding:12px 14px}
+    input:focus,textarea:focus,select:focus{outline:2px solid var(--brand);border-color:transparent}
+    .form__legal{color:var(--muted);font-size:.9rem}
+
+    /* Buttons */
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;background:var(--brand);color:var(--brand-ink);font-weight:700;border:0}
+    .btn--ghost{background:transparent;border:1px solid var(--brand);color:var(--brand)}
+    .btn--sm{padding:8px 12px;border-radius:10px}
+
+    /* Footer */
+    .footer{padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1100px){
+      .cards{grid-template-columns:repeat(3,1fr)}
+      .steps{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .contact__grid{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 520px){
+      .cards{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+    }
+
+    /* Motion/accessibility */
+    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto;animation:none;transition:none} }
+  </style>
 </head>
 <body>
+  <!-- NAV -->
   <header class="nav">
-    <a class="logo" href="#inicio" aria-label="Inicio INGAP Soluciones">
-      <img src="logo.svg" alt="Logo INGAP Soluciones" width="136" height="36" loading="eager">
-    </a>
-    <nav aria-label="Principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#por-que">Por qué nosotros</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contacto" class="btn btn--sm">Contactar</a>
-    </nav>
+    <div class="container nav__row">
+      <a class="logo" href="#inicio" aria-label="Inicio INGAP Soluciones">
+        <!-- Reemplaza por tu logo.svg -->
+        <img src="logo.svg" alt="Logo INGAP Soluciones" loading="eager">
+      </a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" id="menuBtn">Menú ▾</button>
+      <nav id="menu" class="nav__links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#por-que">Por qué nosotros</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto" class="btn btn--sm">Contactar</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="inicio">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__content">
+  <main id="inicio" class="container">
+    <!-- HERO -->
+    <section class="hero" aria-label="Propuesta de valor">
+      <div>
         <h1>Mantenimiento industrial y obras civiles con respuesta rápida</h1>
         <p>Equipos jóvenes, ingeniería sólida y seguridad primero. Ejecutamos <strong>mantenimiento planificado y correctivo</strong>, piping, HVAC y obra civil.</p>
         <div class="cta">
@@ -93,13 +172,14 @@
         </ul>
       </div>
       <picture class="hero__media">
+        <!-- Reemplaza hero.jpg por una imagen de tu equipo/proyecto -->
         <img src="hero.jpg" alt="Equipo de INGAP trabajando en planta" loading="lazy" width="1200" height="800">
       </picture>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="section">
-      <h2>Qué hacemos</h2>
+    <!-- SERVICIOS -->
+    <section id="servicios" aria-labelledby="servicios-title">
+      <h2 id="servicios-title" style="font-size:var(--fs-h2)">Qué hacemos</h2>
       <div class="grid cards">
         <article class="card">
           <h3>Mantenimiento Industrial</h3>
@@ -120,21 +200,21 @@
       </div>
     </section>
 
-    <!-- Por qué nosotros -->
-    <section id="por-que" class="section section--alt">
-      <h2>Por qué elegirnos</h2>
+    <!-- POR QUÉ -->
+    <section id="por-que" class="section--alt" aria-labelledby="pq-title">
+      <h2 id="pq-title" style="font-size:var(--fs-h2)">Por qué elegirnos</h2>
       <ul class="features">
         <li><strong>Respuesta ágil:</strong> coordinamos visita en <em>menos de 24 h</em>*.</li>
         <li><strong>Seguridad:</strong> RIOHS, permisos de trabajo, bloqueo-etiquetado.</li>
         <li><strong>Calidad:</strong> procedimientos, checklists y trazabilidad.</li>
         <li><strong>Ingeniería joven:</strong> enfoque eficiente y moderno.</li>
       </ul>
-      <p class="note">*Sujeto a disponibilidad y ubicación.</p>
+      <p class="form__legal">*Sujeto a disponibilidad y ubicación.</p>
     </section>
 
-    <!-- Testimonios -->
-    <section class="section">
-      <h2>Clientes y testimonios</h2>
+    <!-- TESTIMONIOS -->
+    <section aria-labelledby="testi-title">
+      <h2 id="testi-title" style="font-size:var(--fs-h2)">Clientes y testimonios</h2>
       <div class="grid testimonials">
         <figure class="testimonial">
           <blockquote>“Excelente gestión y calidad en mantenciones críticas. Cumplieron plazos y normativa.”</blockquote>
@@ -147,9 +227,9 @@
       </div>
     </section>
 
-    <!-- Proceso -->
-    <section id="proceso" class="section section--alt">
-      <h2>Nuestro proceso</h2>
+    <!-- PROCESO -->
+    <section id="proceso" class="section--alt" aria-labelledby="proc-title">
+      <h2 id="proc-title" style="font-size:var(--fs-h2)">Nuestro proceso</h2>
       <ol class="steps" aria-label="Pasos de trabajo">
         <li>Levantamiento y diagnóstico</li>
         <li>Propuesta técnica y económica</li>
@@ -159,8 +239,8 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="section">
-      <h2>Preguntas frecuentes</h2>
+    <section id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title" style="font-size:var(--fs-h2)">Preguntas frecuentes</h2>
       <details>
         <summary>¿Trabajan contratos de mantención?</summary>
         <p>Sí, diseñamos planes mensuales/trimestrales con KPIs y reportes.</p>
@@ -175,11 +255,12 @@
       </details>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="section contact">
-      <h2>Contacto</h2>
+    <!-- CONTACTO (Netlify Forms ready) -->
+    <section id="contacto" class="section--alt" aria-labelledby="contact-title">
+      <h2 id="contact-title" style="font-size:var(--fs-h2)">Contacto</h2>
       <div class="grid contact__grid">
-        <form class="form" action="https://formspree.io/f/tu-endpoint" method="POST" aria-label="Formulario de contacto">
+        <form name="contacto" method="POST" data-netlify="true" aria-label="Formulario de contacto">
+          <input type="hidden" name="form-name" value="contacto">
           <label>Nombre
             <input name="name" type="text" required autocomplete="name" />
           </label>
@@ -195,7 +276,6 @@
           <label>Mensaje
             <textarea name="message" rows="5" required placeholder="Cuéntanos tu necesidad"></textarea>
           </label>
-          <input type="hidden" name="_subject" value="Nueva consulta desde el Landing">
           <button class="btn" type="submit">Enviar</button>
           <p class="form__legal">Al enviar aceptas nuestra <a href="#privacidad">política de privacidad</a>.</p>
         </form>
@@ -211,22 +291,54 @@
   </main>
 
   <footer class="footer">
-    <p>© <span id="year"></span> INGAP Soluciones. Todos los derechos reservados.</p>
-    <p id="privacidad">Política de privacidad · Términos de servicio</p>
+    <div class="container">
+      <p>© <span id="year"></span> INGAP Soluciones. Todos los derechos reservados.</p>
+      <p id="privacidad">Política de privacidad · Términos de servicio</p>
+    </div>
   </footer>
 
+  <!-- Schema.org (Organization + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"INGAP Soluciones",
+    "url":"https://tudominio.cl/",
+    "logo":"https://tudominio.cl/logo.png",
+    "sameAs":["https://www.linkedin.com/company/ingap-soluciones"],
+    "address": {"@type": "PostalAddress","addressCountry":"CL","addressRegion":"Valparaíso","addressLocality":"Viña del Mar"},
+    "contactPoint":[{"@type":"ContactPoint","telephone":"+56 9 1234 5678","contactType":"Customer Service","areaServed":"CL","availableLanguage":["es"]}]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"¿Trabajan emergencias 24/7?","acceptedAnswer":{"@type":"Answer","text":"Sí, contamos con cuadrillas disponibles para atención prioritaria según disponibilidad y contrato."}},
+      {"@type":"Question","name":"¿Cobertura?","acceptedAnswer":{"@type":"Answer","text":"Atendemos en toda la zona central y coordinamos proyectos en regiones."}},
+      {"@type":"Question","name":"¿Documentación y seguridad?","acceptedAnswer":{"@type":"Answer","text":"Protocolos SST, RIOHS, charlas de inducción, y procedimientos de trabajo seguro."}}
+    ]
+  }
+  </script>
+
   <script>
-    // Año dinámico + scroll accesible
+    // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
-    if ('scrollBehavior' in document.documentElement.style) {
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', e=>{
-          const id=a.getAttribute('href').slice(1);
-          const el=document.getElementById(id);
-          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-        });
-      });
-    }
+
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    btn?.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    // Theme toggle (optional): set html[data-theme] to 'dark' | 'light' | 'system'
+    try{
+      const saved = localStorage.getItem('theme');
+      if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+    }catch(e){/* ignore */}
   </script>
 </body>
 </html>
