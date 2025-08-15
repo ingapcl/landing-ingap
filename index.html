@@ -12,12 +12,11 @@
   <meta property="og:description" content="Servicio integral: mantenimiento, piping, HVAC, obra civil.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tudominio.cl/">
-  <meta property="og:image" content="https://tudominio.cl/og-image.jpg">
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=INGAP+Soluciones">
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- Favicon referencial -->
+  <link rel="icon" href="https://placehold.co/32x32" sizes="any">
+  <link rel="apple-touch-icon" href="https://placehold.co/180x180">
 
   <style>
     /* ============ RESET & TOKENS ============ */
@@ -97,6 +96,15 @@
     .testimonials{grid-template-columns:repeat(2,1fr)}
     .testimonial{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:var(--radius)}
 
+    /* Carousel logos clientes */
+    .carousel{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in oklab, var(--surface) 85%, transparent)}
+    .carousel__track{display:flex;gap:28px;padding:16px;will-change:transform;animation:logos-scroll 28s linear infinite}
+    .carousel:hover .carousel__track{animation-play-state:paused}
+    .carousel__item{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-width:160px}
+    .carousel__item img{max-height:48px;width:auto;filter:grayscale(1);opacity:.85;transition:opacity .2s ease, filter .2s ease}
+    .carousel__item img:hover{opacity:1;filter:none}
+    @keyframes logos-scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
     /* Contact */
     .contact__grid{grid-template-columns:1.1fr .9fr;gap:20px}
     .form{display:grid;gap:12px}
@@ -126,6 +134,9 @@
     @media (max-width: 720px){
       .cards{grid-template-columns:repeat(2,1fr)}
       .steps{grid-template-columns:repeat(2,1fr)}
+      .carousel__track{gap:18px;padding:12px}
+      .carousel__item{min-width:120px}
+      .carousel__item img{max-height:36px}
     }
     @media (max-width: 520px){
       .cards{grid-template-columns:1fr}
@@ -133,7 +144,7 @@
     }
 
     /* Motion/accessibility */
-    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto;animation:none;transition:none} }
+    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto;animation:none;transition:none} .carousel__track{animation:none} }
   </style>
 </head>
 <body>
@@ -141,13 +152,13 @@
   <header class="nav">
     <div class="container nav__row">
       <a class="logo" href="#inicio" aria-label="Inicio INGAP Soluciones">
-        <!-- Reemplaza por tu logo.svg -->
-        <img src="logo.svg" alt="Logo INGAP Soluciones" loading="eager">
+        <img src="https://placehold.co/132x36?text=LOGO" alt="Logo INGAP Soluciones (referencial)" loading="eager">
       </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="menu" id="menuBtn">Menú ▾</button>
       <nav id="menu" class="nav__links" aria-label="Principal">
         <a href="#servicios">Servicios</a>
         <a href="#por-que">Por qué nosotros</a>
+        <a href="#clientes">Clientes</a>
         <a href="#proceso">Proceso</a>
         <a href="#faq">FAQ</a>
         <a href="#contacto" class="btn btn--sm">Contactar</a>
@@ -172,8 +183,7 @@
         </ul>
       </div>
       <picture class="hero__media">
-        <!-- Reemplaza hero.jpg por una imagen de tu equipo/proyecto -->
-        <img src="hero.jpg" alt="Equipo de INGAP trabajando en planta" loading="lazy" width="1200" height="800">
+        <img src="https://placehold.co/1200x800?text=Proyecto+industrial+(foto+referencial)" alt="Imagen referencial de proyecto industrial" loading="lazy" width="1200" height="800">
       </picture>
     </section>
 
@@ -210,6 +220,36 @@
         <li><strong>Ingeniería joven:</strong> enfoque eficiente y moderno.</li>
       </ul>
       <p class="form__legal">*Sujeto a disponibilidad y ubicación.</p>
+    </section>
+
+    <!-- CLIENTES: carrusel de logos referenciales -->
+    <section id="clientes" class="section--alt" aria-labelledby="clientes-title">
+      <h2 id="clientes-title" style="font-size:var(--fs-h2)">Clientes</h2>
+      <div class="carousel" role="region" aria-label="Logos de clientes (referenciales)">
+        <ul class="carousel__track" aria-live="off">
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+1" alt="Cliente 1 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+2" alt="Cliente 2 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+3" alt="Cliente 3 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+4" alt="Cliente 4 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+5" alt="Cliente 5 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+6" alt="Cliente 6 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+7" alt="Cliente 7 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+8" alt="Cliente 8 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+9" alt="Cliente 9 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+10" alt="Cliente 10 (referencial)" loading="lazy"></li>
+          <!-- Duplicado para bucle infinito visual -->
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+1" alt="Cliente 1 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+2" alt="Cliente 2 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+3" alt="Cliente 3 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+4" alt="Cliente 4 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+5" alt="Cliente 5 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+6" alt="Cliente 6 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+7" alt="Cliente 7 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+8" alt="Cliente 8 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+9" alt="Cliente 9 (referencial)" loading="lazy"></li>
+          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+10" alt="Cliente 10 (referencial)" loading="lazy"></li>
+        </ul>
+      </div>
     </section>
 
     <!-- TESTIMONIOS -->
@@ -304,7 +344,7 @@
     "@type":"Organization",
     "name":"INGAP Soluciones",
     "url":"https://tudominio.cl/",
-    "logo":"https://tudominio.cl/logo.png",
+    "logo":"https://placehold.co/300x80/png?text=LOGO",
     "sameAs":["https://www.linkedin.com/company/ingap-soluciones"],
     "address": {"@type": "PostalAddress","addressCountry":"CL","addressRegion":"Valparaíso","addressLocality":"Viña del Mar"},
     "contactPoint":[{"@type":"ContactPoint","telephone":"+56 9 1234 5678","contactType":"Customer Service","areaServed":"CL","availableLanguage":["es"]}]
