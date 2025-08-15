@@ -1,384 +1,67 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js" data-theme="dark">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>INGAP Soluciones — Mantenimiento Industrial y Obras Civiles</title>
   <meta name="description" content="Mantenimiento industrial y proyectos de obras civiles en Chile. Respuesta rápida, seguridad y calidad certificada. Cotiza hoy con INGAP Soluciones.">
-  <meta name="author" content="INGAP Soluciones">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="INGAP Soluciones — Mantenimiento Industrial y Obras Civiles">
-  <meta property="og:description" content="Servicio integral: mantenimiento, piping, HVAC, obra civil.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tudominio.cl/">
-  <meta property="og:image" content="https://placehold.co/1200x630/png?text=INGAP+Soluciones">
-
-  <!-- Favicon referencial -->
-  <link rel="icon" href="https://placehold.co/32x32" sizes="any">
-  <link rel="apple-touch-icon" href="https://placehold.co/180x180">
-
   <style>
-    /* ============ RESET & TOKENS ============ */
     *,*::before,*::after{box-sizing:border-box}
-    html,body{margin:0}
-    :root{
-      /* Color tokens: dark */
-      --bg:#0b0d12;          /* fondo */
-      --surface:#10141d;     /* tarjetas */
-      --line:#1f2430;        /* bordes */
-      --text:#e6e8ec;        /* texto principal */
-      --muted:#a6adbb;       /* texto secundario */
-      --brand:#2dd4bf;       /* acento */
-      --brand-ink:#001016;   /* texto sobre brand */
-      --max:1100px;
-      --radius:14px;
-      /* Tipografía fluida */
-      --fs-hero:clamp(1.8rem, 1.1rem + 2.5vw, 3rem);
-      --fs-h2:clamp(1.3rem, 1rem + 1vw, 2rem);
-      --fs-body:clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-    }
-    [data-theme="light"]{
-      --bg:#f8fafc; --surface:#ffffff; --line:#e2e8f0; --text:#0f172a; --muted:#475569; --brand:#0ea5e9; --brand-ink:#00131e;
-    }
-    @media (prefers-color-scheme: light){
-      html[data-theme="system"]{--bg:#f8fafc; --surface:#ffffff; --line:#e2e8f0; --text:#0f172a; --muted:#475569; --brand:#0ea5e9; --brand-ink:#00131e}
-    }
-
-    body{background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:#0b0d12;color:#e6e8ec;line-height:1.6}
     img{max-width:100%;display:block;height:auto}
-    a{color:var(--brand);text-decoration:none}
+    a{color:#2dd4bf;text-decoration:none}
     a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:auto;padding:0 18px}
     h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
-    p{margin:.5rem 0 0}
-    .container{max-width:var(--max);margin-inline:auto;padding:0 18px}
-
-    /* ============ NAV ============ */
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(10px);background:color-mix(in oklab, var(--bg) 80%, transparent);border-bottom:1px solid var(--line)}
-    .nav__row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text)}
-    .logo img{width:132px;height:auto}
-    .nav__links{display:flex;gap:10px;align-items:center}
-    .nav__links a{padding:8px 10px;border-radius:10px}
-    .nav__toggle{display:none}
-
-    /* Mobile menu */
-    @media (max-width: 860px){
-      .nav__toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 12px;border-radius:10px}
-      .nav__links{position:fixed;inset:56px 12px auto 12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);padding:10px;display:none;flex-direction:column}
-      .nav__links.is-open{display:flex}
-    }
-
-    /* ============ HERO ============ */
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:64px 0}
-    .hero h1{font-size:var(--fs-hero)}
-    .hero p{color:var(--muted);max-width:60ch}
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-    .badges{display:flex;gap:12px;list-style:none;padding:0;margin:18px 0 0;flex-wrap:wrap}
-    .badges li{background:var(--surface);border:1px solid var(--line);padding:10px 14px;border-radius:999px}
-    .hero__media{align-self:center;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
-
-    /* ============ SECTIONS ============ */
-    section{padding:56px 0}
-    .section--alt{background:linear-gradient(180deg, color-mix(in oklab, var(--surface) 25%, transparent), transparent);border-block:1px solid var(--line)}
-    .grid{display:grid;gap:16px}
-
-    /* Cards */
-    .cards{grid-template-columns:repeat(4,1fr)}
-    .card{background:var(--surface);border:1px solid var(--line);padding:18px;border-radius:var(--radius)}
-    .card h3{margin-bottom:.25rem}
-
-    /* Features / steps / testimonials */
-    .features{display:grid;gap:10px}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:step}
-    .steps li{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:var(--radius);list-style:none;position:relative}
-    .steps li::before{counter-increment:step;content:counter(step);position:absolute;top:10px;right:10px;color:var(--muted);font-weight:700}
-    .testimonials{grid-template-columns:repeat(2,1fr)}
-    .testimonial{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:var(--radius)}
-
-    /* Carousel logos clientes */
-    .carousel{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in oklab, var(--surface) 85%, transparent)}
-    .carousel__track{display:flex;gap:28px;padding:16px;will-change:transform;animation:logos-scroll 28s linear infinite}
-    .carousel:hover .carousel__track{animation-play-state:paused}
-    .carousel__item{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-width:160px}
-    .carousel__item img{max-height:48px;width:auto;filter:grayscale(1);opacity:.85;transition:opacity .2s ease, filter .2s ease}
-    .carousel__item img:hover{opacity:1;filter:none}
-    @keyframes logos-scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-
-    /* Contact */
-    .contact__grid{grid-template-columns:1.1fr .9fr;gap:20px}
-    .form{display:grid;gap:12px}
-    .form label{display:grid;gap:6px;font-weight:600}
-    input,textarea,select{border-radius:12px;border:1px solid var(--line);background:color-mix(in oklab, var(--surface) 85%, var(--bg));color:var(--text);padding:12px 14px}
-    input:focus,textarea:focus,select:focus{outline:2px solid var(--brand);border-color:transparent}
-    .form__legal{color:var(--muted);font-size:.9rem}
-
-    /* Buttons */
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;background:var(--brand);color:var(--brand-ink);font-weight:700;border:0}
-    .btn--ghost{background:transparent;border:1px solid var(--brand);color:var(--brand)}
-    .btn--sm{padding:8px 12px;border-radius:10px}
-
-    /* Footer */
-    .footer{padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
-
-    /* ============ RESPONSIVE ============ */
-    @media (max-width: 1100px){
-      .cards{grid-template-columns:repeat(3,1fr)}
-      .steps{grid-template-columns:repeat(3,1fr)}
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .contact__grid{grid-template-columns:1fr}
-      .testimonials{grid-template-columns:1fr}
-    }
-    @media (max-width: 720px){
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .steps{grid-template-columns:repeat(2,1fr)}
-      .carousel__track{gap:18px;padding:12px}
-      .carousel__item{min-width:120px}
-      .carousel__item img{max-height:36px}
-    }
-    @media (max-width: 520px){
-      .cards{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr}
-    }
-
-    /* Motion/accessibility */
-    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto;animation:none;transition:none} .carousel__track{animation:none} }
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:64px 0;align-items:center}
+    .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#10141d;border:1px solid #1f2430;padding:18px;border-radius:14px}
+    .logos-carousel{overflow:hidden;position:relative;padding:40px 0;background:rgba(255,255,255,0.02);border-top:1px solid #1f2430;border-bottom:1px solid #1f2430}
+    .logos-track{display:flex;gap:40px;animation:scroll 20s linear infinite}
+    .logos-track img{height:60px;object-fit:contain;filter:grayscale(100%) brightness(0.8);transition:filter .3s ease,opacity .3s ease}
+    .logos-track img:hover{filter:none;opacity:1}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="container nav__row">
-      <a class="logo" href="#inicio" aria-label="Inicio INGAP Soluciones">
-        <img src="https://placehold.co/132x36?text=LOGO" alt="Logo INGAP Soluciones (referencial)" loading="eager">
-      </a>
-      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" id="menuBtn">Menú ▾</button>
-      <nav id="menu" class="nav__links" aria-label="Principal">
-        <a href="#servicios">Servicios</a>
-        <a href="#por-que">Por qué nosotros</a>
-        <a href="#clientes">Clientes</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto" class="btn btn--sm">Contactar</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="inicio" class="container">
-    <!-- HERO -->
-    <section class="hero" aria-label="Propuesta de valor">
+  <main class="container">
+    <section class="hero">
       <div>
         <h1>Mantenimiento industrial y obras civiles con respuesta rápida</h1>
         <p>Equipos jóvenes, ingeniería sólida y seguridad primero. Ejecutamos <strong>mantenimiento planificado y correctivo</strong>, piping, HVAC y obra civil.</p>
-        <div class="cta">
-          <a class="btn" href="https://wa.me/56912345678?text=Hola%20INGAP%2C%20necesito%20cotizar" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">Cotizar por WhatsApp</a>
-          <a class="btn btn--ghost" href="#contacto">Solicitar visita técnica</a>
-        </div>
-        <ul class="badges" aria-label="Métricas destacadas">
-          <li><strong>120+</strong> proyectos</li>
-          <li><strong>24/7</strong> soporte</li>
-          <li><strong>SST</strong> protocolos</li>
-        </ul>
       </div>
-      <picture class="hero__media">
-        <img src="https://placehold.co/1200x800?text=Proyecto+industrial+(foto+referencial)" alt="Imagen referencial de proyecto industrial" loading="lazy" width="1200" height="800">
-      </picture>
+      <img src="https://placehold.co/600x400?text=Hero+Imagen+Referencial" alt="Imagen referencial de hero">
     </section>
-
-    <!-- SERVICIOS -->
-    <section id="servicios" aria-labelledby="servicios-title">
-      <h2 id="servicios-title" style="font-size:var(--fs-h2)">Qué hacemos</h2>
-      <div class="grid cards">
-        <article class="card">
-          <h3>Mantenimiento Industrial</h3>
-          <p>Planificado, correctivo y predictivo. Tableros, bombas, compresores, instrumentación.</p>
-        </article>
-        <article class="card">
-          <h3>Piping & Soldadura</h3>
-          <p>Acero al carbono, inoxidable y HDPE. Montaje de líneas, pruebas de presión y estanqueidad.</p>
-        </article>
-        <article class="card">
-          <h3>HVAC & Refrigeración</h3>
-          <p>Climatización industrial, chillers, VRF/VRV, cámaras frigoríficas, mantención y retrofit.</p>
-        </article>
-        <article class="card">
-          <h3>Obras Civiles</h3>
-          <p>Hormigón, estructuras metálicas, obras menores y habilitaciones industriales.</p>
-        </article>
+    <section>
+      <h2>Qué hacemos</h2>
+      <div class="cards">
+        <div class="card"><h3>Mantenimiento Industrial</h3><p>Planificado, correctivo y predictivo.</p></div>
+        <div class="card"><h3>Piping & Soldadura</h3><p>Acero al carbono, inoxidable y HDPE.</p></div>
+        <div class="card"><h3>HVAC & Refrigeración</h3><p>Climatización industrial y retrofit.</p></div>
+        <div class="card"><h3>Obras Civiles</h3><p>Hormigón y estructuras metálicas.</p></div>
       </div>
     </section>
-
-    <!-- POR QUÉ -->
-    <section id="por-que" class="section--alt" aria-labelledby="pq-title">
-      <h2 id="pq-title" style="font-size:var(--fs-h2)">Por qué elegirnos</h2>
-      <ul class="features">
-        <li><strong>Respuesta ágil:</strong> coordinamos visita en <em>menos de 24 h</em>*.</li>
-        <li><strong>Seguridad:</strong> RIOHS, permisos de trabajo, bloqueo-etiquetado.</li>
-        <li><strong>Calidad:</strong> procedimientos, checklists y trazabilidad.</li>
-        <li><strong>Ingeniería joven:</strong> enfoque eficiente y moderno.</li>
-      </ul>
-      <p class="form__legal">*Sujeto a disponibilidad y ubicación.</p>
-    </section>
-
-    <!-- CLIENTES: carrusel de logos referenciales -->
-    <section id="clientes" class="section--alt" aria-labelledby="clientes-title">
-      <h2 id="clientes-title" style="font-size:var(--fs-h2)">Clientes</h2>
-      <div class="carousel" role="region" aria-label="Logos de clientes (referenciales)">
-        <ul class="carousel__track" aria-live="off">
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+1" alt="Cliente 1 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+2" alt="Cliente 2 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+3" alt="Cliente 3 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+4" alt="Cliente 4 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+5" alt="Cliente 5 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+6" alt="Cliente 6 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+7" alt="Cliente 7 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+8" alt="Cliente 8 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+9" alt="Cliente 9 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+10" alt="Cliente 10 (referencial)" loading="lazy"></li>
-          <!-- Duplicado para bucle infinito visual -->
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+1" alt="Cliente 1 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+2" alt="Cliente 2 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+3" alt="Cliente 3 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+4" alt="Cliente 4 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+5" alt="Cliente 5 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+6" alt="Cliente 6 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+7" alt="Cliente 7 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+8" alt="Cliente 8 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+9" alt="Cliente 9 (referencial)" loading="lazy"></li>
-          <li class="carousel__item"><img src="https://placehold.co/160x80?text=Logo+10" alt="Cliente 10 (referencial)" loading="lazy"></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- TESTIMONIOS -->
-    <section aria-labelledby="testi-title">
-      <h2 id="testi-title" style="font-size:var(--fs-h2)">Clientes y testimonios</h2>
-      <div class="grid testimonials">
-        <figure class="testimonial">
-          <blockquote>“Excelente gestión y calidad en mantenciones críticas. Cumplieron plazos y normativa.”</blockquote>
-          <figcaption>Jefe de Planta, Alimentos XYZ</figcaption>
-        </figure>
-        <figure class="testimonial">
-          <blockquote>“Montaje de piping impecable y documentación al día. Los volveríamos a contratar.”</blockquote>
-          <figcaption>Encargado de Mantención, Logística ABC</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- PROCESO -->
-    <section id="proceso" class="section--alt" aria-labelledby="proc-title">
-      <h2 id="proc-title" style="font-size:var(--fs-h2)">Nuestro proceso</h2>
-      <ol class="steps" aria-label="Pasos de trabajo">
-        <li>Levantamiento y diagnóstico</li>
-        <li>Propuesta técnica y económica</li>
-        <li>Ejecución y control de calidad</li>
-        <li>Entrega, informes y garantías</li>
-      </ol>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title" style="font-size:var(--fs-h2)">Preguntas frecuentes</h2>
-      <details>
-        <summary>¿Trabajan contratos de mantención?</summary>
-        <p>Sí, diseñamos planes mensuales/trimestrales con KPIs y reportes.</p>
-      </details>
-      <details>
-        <summary>¿Emiten documentación SST?</summary>
-        <p>Incluimos matrices de riesgo, PT, registros y charlas de inducción.</p>
-      </details>
-      <details>
-        <summary>¿Qué medios de pago aceptan?</summary>
-        <p>Transferencia y órdenes de compra; otros por acuerdo.</p>
-      </details>
-    </section>
-
-    <!-- CONTACTO (Netlify Forms ready) -->
-    <section id="contacto" class="section--alt" aria-labelledby="contact-title">
-      <h2 id="contact-title" style="font-size:var(--fs-h2)">Contacto</h2>
-      <div class="grid contact__grid">
-        <form name="contacto" method="POST" data-netlify="true" aria-label="Formulario de contacto">
-          <input type="hidden" name="form-name" value="contacto">
-          <label>Nombre
-            <input name="name" type="text" required autocomplete="name" />
-          </label>
-          <label>Empresa
-            <input name="company" type="text" autocomplete="organization" />
-          </label>
-          <label>Correo
-            <input name="email" type="email" required autocomplete="email" />
-          </label>
-          <label>Teléfono
-            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" />
-          </label>
-          <label>Mensaje
-            <textarea name="message" rows="5" required placeholder="Cuéntanos tu necesidad"></textarea>
-          </label>
-          <button class="btn" type="submit">Enviar</button>
-          <p class="form__legal">Al enviar aceptas nuestra <a href="#privacidad">política de privacidad</a>.</p>
-        </form>
-
-        <aside class="contact__info" aria-label="Información de contacto">
-          <p><strong>Correo:</strong> contacto@tudominio.cl</p>
-          <p><strong>WhatsApp:</strong> <a href="https://wa.me/56912345678" target="_blank" rel="noopener">+56 9 1234 5678</a></p>
-          <p><strong>Cobertura:</strong> Zona central y proyectos en regiones.</p>
-          <p><strong>Horario:</strong> Lun–Vie 8:30–18:30</p>
-        </aside>
+    <section class="logos-carousel">
+      <div class="logos-track">
+        <img src="https://placehold.co/150x60?text=Logo+1" alt="Cliente 1 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+2" alt="Cliente 2 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+3" alt="Cliente 3 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+4" alt="Cliente 4 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+5" alt="Cliente 5 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+6" alt="Cliente 6 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+7" alt="Cliente 7 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+8" alt="Cliente 8 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+9" alt="Cliente 9 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+10" alt="Cliente 10 (referencial)">
+        <!-- duplicados para efecto infinito -->
+        <img src="https://placehold.co/150x60?text=Logo+1" alt="Cliente 1 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+2" alt="Cliente 2 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+3" alt="Cliente 3 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+4" alt="Cliente 4 (referencial)">
+        <img src="https://placehold.co/150x60?text=Logo+5" alt="Cliente 5 (referencial)">
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> INGAP Soluciones. Todos los derechos reservados.</p>
-      <p id="privacidad">Política de privacidad · Términos de servicio</p>
-    </div>
-  </footer>
-
-  <!-- Schema.org (Organization + FAQPage) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"INGAP Soluciones",
-    "url":"https://tudominio.cl/",
-    "logo":"https://placehold.co/300x80/png?text=LOGO",
-    "sameAs":["https://www.linkedin.com/company/ingap-soluciones"],
-    "address": {"@type": "PostalAddress","addressCountry":"CL","addressRegion":"Valparaíso","addressLocality":"Viña del Mar"},
-    "contactPoint":[{"@type":"ContactPoint","telephone":"+56 9 1234 5678","contactType":"Customer Service","areaServed":"CL","availableLanguage":["es"]}]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"¿Trabajan emergencias 24/7?","acceptedAnswer":{"@type":"Answer","text":"Sí, contamos con cuadrillas disponibles para atención prioritaria según disponibilidad y contrato."}},
-      {"@type":"Question","name":"¿Cobertura?","acceptedAnswer":{"@type":"Answer","text":"Atendemos en toda la zona central y coordinamos proyectos en regiones."}},
-      {"@type":"Question","name":"¿Documentación y seguridad?","acceptedAnswer":{"@type":"Answer","text":"Protocolos SST, RIOHS, charlas de inducción, y procedimientos de trabajo seguro."}}
-    ]
-  }
-  </script>
-
-  <script>
-    // Año dinámico
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
-    const btn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
-    btn?.addEventListener('click', ()=>{
-      const open = menu.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(open));
-    });
-
-    // Theme toggle (optional): set html[data-theme] to 'dark' | 'light' | 'system'
-    try{
-      const saved = localStorage.getItem('theme');
-      if(saved){ document.documentElement.setAttribute('data-theme', saved); }
-    }catch(e){/* ignore */}
-  </script>
 </body>
 </html>
